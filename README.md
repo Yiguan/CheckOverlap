@@ -21,9 +21,7 @@ Usage:
 Arguments:
 
      pos: a vector of numbers of points
-
-   start: a vector of numbers of starting position
-
+     start: a vector of numbers of starting position
      end: a vector of numbers of ending position
 
 Examples:
@@ -51,9 +49,7 @@ Usage:
 Arguments:
 
      pos: a vector of numbers of points
-
-   start: a vector of numbers of starting position
-
+     start: a vector of numbers of starting position
      end: a vector of numbers of ending position
 
 Examples:
