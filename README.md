@@ -1,5 +1,10 @@
 # CheckOverlap
 
+INSTALL
+```R
+library(devtools)
+install_github("Yiguan/CheckOverlap")
+```
 ================================================
 1. CheckPoint(pos, start, end)
 Check if points in segments
