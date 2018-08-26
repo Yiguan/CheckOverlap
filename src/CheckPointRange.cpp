@@ -73,3 +73,44 @@ IntegerVector CheckRange(IntegerVector pos, IntegerVector start, IntegerVector e
 
 
 
+#include <Rcpp.h>
+
+using namespace Rcpp;
+//'@title match point to range
+//'@description
+//'To map points into segmentatin
+//'return a dataframe with "point_position" and "seg_row"
+//'indicating the points fall into which segmentation.
+//'@param pos a vector of numbers of points
+//'@param start a vector of numbers of starting position
+//'@param end a vector of numbers of ending position
+//'@examples
+//'aa <- c(3,9,21,11)
+//'bb1 <- c(1,8,16)
+//'bb2 <- c(4,15,18)
+//'CheckMatch(aa,bb1,bb2)
+//'result shows the first point in first segmentation; the second and forth points
+//'in the second segmentation
+//'@useDynLib CheckOverlap
+//'@import Rcpp
+//'@export
+//[[Rcpp::export]]
+
+DataFrame CheckMatch(IntegerVector pos, IntegerVector start, IntegerVector end){
+  int pos_size=pos.size();
+  int seg_size=start.size();
+  IntegerVector ismask;
+  IntegerVector pos_position;
+  for (int i=0; i<pos_size; i++) {
+    for (int j=0; j<seg_size; j++){
+      if ( pos[i]>=start[j] && pos[i]<=end[j] ){
+        ismask.push_back(j+1);
+        pos_position.push_back(i+1);
+      }
+    }
+  }
+  return DataFrame::create(Named("point_position")=pos_position, Named("seg_row") = ismask);
+}
+
+
+

@@ -43,3 +43,25 @@ CheckRange <- function(pos, start, end) {
     .Call('_CheckOverlap_CheckRange', PACKAGE = 'CheckOverlap', pos, start, end)
 }
 
+#'@title match point to range
+#'@description
+#'To map points into segmentatin
+#'return a dataframe with "point_position" and "seg_row"
+#'indicating the points fall into which segmentation.
+#'@param pos a vector of numbers of points
+#'@param start a vector of numbers of starting position
+#'@param end a vector of numbers of ending position
+#'@examples
+#'aa <- c(3,9,21,11)
+#'bb1 <- c(1,8,16)
+#'bb2 <- c(4,15,18)
+#'CheckMatch(aa,bb1,bb2)
+#'result shows the first point in first segmentation; the second and forth points
+#'in the second segmentation
+#'@useDynLib CheckOverlap
+#'@import Rcpp
+#'@export
+CheckMatch <- function(pos, start, end) {
+    .Call('_CheckOverlap_CheckMatch', PACKAGE = 'CheckOverlap', pos, start, end)
+}
+
