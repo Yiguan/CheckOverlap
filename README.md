@@ -59,3 +59,36 @@ Examples:
      bb2 <- c(3,8,10)
      # to see if range 1-3,5-8, 7-8 contain 2,4,6
      CheckRange(aa,bb1,bb2)
+
+     ===================================================
+
+3. CheckMatch(pos, start, end)
+ Check if segments contain point
+
+Description:
+
+     To map points into segmentation and return a dataframe with "point_position" and "seg_row" indicating the points fall into which segmentation.
+     
+
+Usage:
+
+     CheckPoint(pos, start, end)
+     
+Arguments:
+
+     pos: a vector of numbers of points
+     start: a vector of numbers of starting position
+     end: a vector of numbers of ending position
+
+Examples:
+
+     aa <- c(3,9,21,11)
+     bb1 <- c(1,8,16)
+     bb2 <- c(4,15,18)
+     CheckMatch(aa,bb1,bb2)
+     #result shows the first point in first segmentation; the second and forth points
+     #in the second segmentation
+     #    point_position seg_row
+     #1              1       1
+     #2              2       2
+     #3              4       2
