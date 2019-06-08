@@ -1,12 +1,13 @@
 # CheckOverlap
 
-INSTALL
+## INSTALL
 ```R
 library(devtools)
 install_github("Yiguan/CheckOverlap")
 ```
 ================================================
-1. CheckPoint(pos, start, end)
+## 1. CheckPoint(pos, start, end)
+
 Check if points in segments
 
 Description:
@@ -34,7 +35,8 @@ Examples:
      
 ===================================================
 
-2. CheckRange(pos, start, end)
+## 2. CheckRange(pos, start, end)
+
  Check if segments contain point
 
 Description:
@@ -60,10 +62,11 @@ Examples:
      # to see if range 1-3,5-8, 7-8 contain 2,4,6
      CheckRange(aa,bb1,bb2)
 
-     ===================================================
+=====================================================
 
-3. CheckMatch(pos, start, end)
- Check if segments contain point
+## 3. CheckMatch(pos, start, end)
+
+ Check if segments contain point 
 
 Description:
 
@@ -92,3 +95,33 @@ Examples:
      #1              1       1
      #2              2       2
      #3              4       2
+
+======================================================
+
+## 4. CheckRange2Range(aa_start,aa_end,bb_start,bb_end)
+
+  check segments overlap with other segments
+
+Description:
+
+	To check if a segments overlap with other segments.
+
+Usage:
+	
+	CheckRange2Range(aa_start,aa_end,bb_start,bb_end)
+
+Arguments:
+
+	aa_start: a vector of numbers of starting positions of checked segments
+	aa_end: a vector of numbers of ending position of checked segments
+	bb_start: a vector of numbers of starting position of other segments
+	bb_end: a vector of numbers of ending position of other segments
+
+Examples:
+
+	aa_start <- c(2,6,11)
+	aa_end <- c(4,9,15)
+	bb_start <- c(1,5,7)
+	bb_end <- c(3,8,10)
+	# to see if segments 2-4,6-9,11-15 overlap with 1-3,5-8,7-10
+	CheckRange2Range(aa_start,aa_end,bb_start,bb_end)
