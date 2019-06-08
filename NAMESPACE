@@ -3,5 +3,6 @@
 export(CheckMatch)
 export(CheckPoint)
 export(CheckRange)
+export(CheckRange2Range)
 import(Rcpp)
 useDynLib(CheckOverlap)

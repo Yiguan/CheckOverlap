@@ -23,6 +23,6 @@ aa <- c(3,9,21,11)
 bb1 <- c(1,8,16)
 bb2 <- c(4,15,18)
 CheckMatch(aa,bb1,bb2)
-#result shows the first point in first segmentation; the second and forth points
-#in the second segmentation
+# result shows the first point in first segmentation; the second and forth points
+# in the second segmentation
 }

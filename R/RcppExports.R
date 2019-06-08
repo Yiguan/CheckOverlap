@@ -56,12 +56,36 @@ CheckRange <- function(pos, start, end) {
 #'bb1 <- c(1,8,16)
 #'bb2 <- c(4,15,18)
 #'CheckMatch(aa,bb1,bb2)
-#'result shows the first point in first segmentation; the second and forth points
-#'in the second segmentation
+#'# result shows the first point in first segmentation; the second and forth points
+#'# in the second segmentation
 #'@useDynLib CheckOverlap
 #'@import Rcpp
 #'@export
 CheckMatch <- function(pos, start, end) {
     .Call('_CheckOverlap_CheckMatch', PACKAGE = 'CheckOverlap', pos, start, end)
+}
+
+#'@title Check if segments overlap with other segments
+#'@description
+#'To check if a segments overlap with other segments.
+#'@description
+#'Return a vector of 0,1
+#'with 1 = overlap, 0 = not overlap.
+#'@param check_start a vector of numbers of starting positions of checked segments
+#'@param check_end a vector of numbers of ending position of checked segments
+#'@param other_start a vector of numbers of starting position of other segments
+#'@param other_end a vector of numbers of ending position of other segments
+#'@examples
+#'aa_start <- c(2,6,11)
+#'aa_end <- c(4,9,15)
+#'bb_start <- c(1,5,7)
+#'bb_end <- c(3,8,10)
+#'# to see if segments 2-4,6-9,11-15 overlap with 1-3,5-8,7-10
+#'CheckRange2Range(aa_start,aa_end,bb_start,bb_end)
+#'@useDynLib CheckOverlap
+#'@import Rcpp
+#'@export
+CheckRange2Range <- function(check_start, check_end, other_start, other_end) {
+    .Call('_CheckOverlap_CheckRange2Range', PACKAGE = 'CheckOverlap', check_start, check_end, other_start, other_end)
 }
 
