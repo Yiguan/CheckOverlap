@@ -84,11 +84,13 @@ using namespace Rcpp;
 //'@param pos a vector of numbers of points
 //'@param start a vector of numbers of starting position
 //'@param end a vector of numbers of ending position
+//'@param matchAll logical "T" or "F", default = "T",
+//' "T" check all match without break loop
 //'@examples
 //'aa <- c(3,9,21,11)
 //'bb1 <- c(1,8,16)
 //'bb2 <- c(4,15,18)
-//'CheckMatch(aa,bb1,bb2)
+//'CheckMatch(aa,bb1,bb2,matchAll = 'T')
 //'# result shows the first point in first segmentation; the second and forth points
 //'# in the second segmentation
 //'@useDynLib CheckOverlap
@@ -96,19 +98,39 @@ using namespace Rcpp;
 //'@export
 //[[Rcpp::export]]
 
-DataFrame CheckMatch(IntegerVector pos, IntegerVector start, IntegerVector end){
+DataFrame CheckMatch(IntegerVector pos, IntegerVector start, IntegerVector end, const char matchAll='T'){
   int pos_size=pos.size();
   int seg_size=start.size();
   IntegerVector ismask;
   IntegerVector pos_position;
-  for (int i=0; i<pos_size; i++) {
-    for (int j=0; j<seg_size; j++){
-      if ( pos[i]>=start[j] && pos[i]<=end[j] ){
-        ismask.push_back(j+1);
-        pos_position.push_back(i+1);
+  if (matchAll=='T')
+  {
+      for (int i=0; i<pos_size; i++) {
+      for (int j=0; j<seg_size; j++){
+        if ( pos[i]>=start[j] && pos[i]<=end[j] ){
+          ismask.push_back(j+1);
+          pos_position.push_back(i+1);
+        }
       }
     }
   }
+  else if(matchAll=='F')
+  {
+    for (int i=0; i<pos_size; i++) {
+      for (int j=0; j<seg_size; j++){
+        if ( pos[i]>=start[j] && pos[i]<=end[j] ){
+          ismask.push_back(j+1);
+          pos_position.push_back(i+1);
+          break;
+        }
+      }
+    }
+  }
+  else
+  {
+    stop("Use TRUE or FALSE for matchAll!");
+  }
+
   return DataFrame::create(Named("point_position")=pos_position, Named("seg_row") = ismask);
 }
 

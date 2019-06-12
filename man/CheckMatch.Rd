@@ -4,7 +4,7 @@
 \alias{CheckMatch}
 \title{match point to range}
 \usage{
-CheckMatch(pos, start, end)
+CheckMatch(pos, start, end, matchAll = "T")
 }
 \arguments{
 \item{pos}{a vector of numbers of points}
@@ -12,6 +12,9 @@ CheckMatch(pos, start, end)
 \item{start}{a vector of numbers of starting position}
 
 \item{end}{a vector of numbers of ending position}
+
+\item{matchAll}{logical "T" or "F", default = "T",
+"T" check all match without break loop}
 }
 \description{
 To map points into segmentatin
@@ -22,7 +25,7 @@ indicating the points fall into which segmentation.
 aa <- c(3,9,21,11)
 bb1 <- c(1,8,16)
 bb2 <- c(4,15,18)
-CheckMatch(aa,bb1,bb2)
+CheckMatch(aa,bb1,bb2,matchAll = 'T')
 # result shows the first point in first segmentation; the second and forth points
 # in the second segmentation
 }

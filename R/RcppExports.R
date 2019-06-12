@@ -51,18 +51,20 @@ CheckRange <- function(pos, start, end) {
 #'@param pos a vector of numbers of points
 #'@param start a vector of numbers of starting position
 #'@param end a vector of numbers of ending position
+#'@param matchAll logical "T" or "F", default = "T",
+#' "T" check all match without break loop
 #'@examples
 #'aa <- c(3,9,21,11)
 #'bb1 <- c(1,8,16)
 #'bb2 <- c(4,15,18)
-#'CheckMatch(aa,bb1,bb2)
+#'CheckMatch(aa,bb1,bb2,matchAll = 'T')
 #'# result shows the first point in first segmentation; the second and forth points
 #'# in the second segmentation
 #'@useDynLib CheckOverlap
 #'@import Rcpp
 #'@export
-CheckMatch <- function(pos, start, end) {
-    .Call('_CheckOverlap_CheckMatch', PACKAGE = 'CheckOverlap', pos, start, end)
+CheckMatch <- function(pos, start, end, matchAll = 'T') {
+    .Call('_CheckOverlap_CheckMatch', PACKAGE = 'CheckOverlap', pos, start, end, matchAll)
 }
 
 #'@title Check if segments overlap with other segments

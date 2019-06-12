@@ -32,15 +32,16 @@ BEGIN_RCPP
 END_RCPP
 }
 // CheckMatch
-DataFrame CheckMatch(IntegerVector pos, IntegerVector start, IntegerVector end);
-RcppExport SEXP _CheckOverlap_CheckMatch(SEXP posSEXP, SEXP startSEXP, SEXP endSEXP) {
+DataFrame CheckMatch(IntegerVector pos, IntegerVector start, IntegerVector end, const char matchAll);
+RcppExport SEXP _CheckOverlap_CheckMatch(SEXP posSEXP, SEXP startSEXP, SEXP endSEXP, SEXP matchAllSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< IntegerVector >::type pos(posSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type start(startSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type end(endSEXP);
-    rcpp_result_gen = Rcpp::wrap(CheckMatch(pos, start, end));
+    Rcpp::traits::input_parameter< const char >::type matchAll(matchAllSEXP);
+    rcpp_result_gen = Rcpp::wrap(CheckMatch(pos, start, end, matchAll));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -62,7 +63,7 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_CheckOverlap_CheckPoint", (DL_FUNC) &_CheckOverlap_CheckPoint, 3},
     {"_CheckOverlap_CheckRange", (DL_FUNC) &_CheckOverlap_CheckRange, 3},
-    {"_CheckOverlap_CheckMatch", (DL_FUNC) &_CheckOverlap_CheckMatch, 3},
+    {"_CheckOverlap_CheckMatch", (DL_FUNC) &_CheckOverlap_CheckMatch, 4},
     {"_CheckOverlap_CheckRange2Range", (DL_FUNC) &_CheckOverlap_CheckRange2Range, 4},
     {NULL, NULL, 0}
 };
