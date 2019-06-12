@@ -64,7 +64,7 @@ Examples:
 
 =====================================================
 
-## 3. CheckMatch(pos, start, end)
+## 3. CheckMatch(pos, start, end, matchALL='T')
 
  Check if segments contain point 
 
@@ -81,20 +81,32 @@ Arguments:
 
      pos: a vector of numbers of points
      start: a vector of numbers of starting position
-     end: a vector of numbers of ending position
+     end: a vector of numbers of ending positioni
+     matchAll: logical "T" or "F", default = "T"
 
 Examples:
 
      aa <- c(3,9,21,11)
      bb1 <- c(1,8,16)
-     bb2 <- c(4,15,18)
+     bb2 <- c(10,15,18)
+     # find all possible match
      CheckMatch(aa,bb1,bb2)
-     #result shows the first point in first segmentation; the second and forth points
-     #in the second segmentation
-     #    point_position seg_row
-     #1              1       1
-     #2              2       2
-     #3              4       2
+     ##   point_position seg_row
+     # 1              1       1
+     # 2              2       1
+     # 3              2       2
+     # 4              4       2
+     ## 1st point within 1st segment; 2nd points within 1st and 2nd segment;
+     ## 4th point in 2nd segment.
+ 
+     # find the first match line and break
+     CheckMatch(aa,bb1,bb2,matchAll='F')
+     ##   point_position seg_row
+     # 1              1       1
+     # 2              2       1
+     # 3              4       2
+     ## 1st point FIRST match in 1st segment; 2nd point FIRST match 1st segment
+     ## 4th point FIRST match in 2nd segment.
 
 ======================================================
 
